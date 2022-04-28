@@ -1,0 +1,82 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    --sidebar-text-color: #6c757d;
+    --sidebar-bg-color: #f8f9fa;
+    --header-text-color: #495057;
+    --header-bg-color: #f8f9fa;
+}
+
+.container {
+    display: grid;
+    grid-template: auto 1fr / auto 1fr;
+    height: 100vh;
+    width: 100vw;
+    
+}
+
+.header {
+    display: flex;
+    grid-column: auto / span 2;
+    justify-content: start;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1rem;
+    font-weight: 700;
+    background-color: var(--header-bg-color);
+    color: var(--header-text-color);
+    box-shadow: 0px -1px 7px var(--sidebar-text-color);
+    z-index: 1;
+}
+
+.header .menu svg,
+.header .bell {
+    height: 1.4em;
+}
+
+.header .menu:hover,
+.header .menu:focus {
+    background-color: #1f81e2a3;
+}
+
+.header .profile-picture {
+    height: 3em;
+    border-radius: 50%;
+}
+
+.header .logo {
+    font-size: 2.5em;
+    margin-right: auto;
+}
+
+.header .logo span {
+    color: #82b68f;
+}
+
+.sidebar {
+    display: grid;
+    grid-template:  1fr repeat(5, auto) 1fr repeat(5, auto) 4fr / auto;
+    place-items: center start;
+    gap: 1.5rem;
+    font-weight: 400;
+    background-color: var(--sidebar-bg-color);
+    color: var(--sidebar-text-color);
+}
+
+.sidebar-select {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    padding: 0 3rem 0 1rem;
+    gap: 1rem;
+
+}
+
+.sidebar svg {
+    height: 1.8em;
+}
