@@ -8,16 +8,14 @@
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
     --sidebar-text-color: #6c757d;
     --sidebar-bg-color: #f8f9fa;
-    --header-text-color: #495057;
-    --header-bg-color: #f8f9fa;
-
-    --focus-bg: rgba(184, 181, 195, 0.523);
-    --focus-color: #212529;
-    --highlight-color: rgb(20, 130, 25);
-
-    --content-bg-color: rgb(245, 245, 245);
-    --content-card-bg-color: #eaf5ff;
+    --header-text-color: #343a40;
+    --header-bg-color: #e9ecef;
+    --border-color: #ced4da;
+    --highlight-color: #562a9d;
+    --content-padding: 3rem;
 }
+
+/* main container */
 
 body {
     background-color: var(--header-bg-color);
@@ -31,6 +29,8 @@ body {
     width: 100vw;
     
 }
+
+/* header */
 
 .header {
     display: flex;
@@ -51,32 +51,6 @@ body {
     height: 1.4em;
 }
 
-.header .menu,
-.header .bell {
-    display: grid;
-    place-items: center;
-    outline: none;
-    border-radius: 50%;
-    height: 2.3em;
-    width: 2.3em;
-    cursor: pointer;
-}
-
-.header .menu:hover,
-.header .menu:focus,
-.header .bell:hover,
-.header .bell:focus {
-    background-color: var(--focus-bg);
-    box-shadow: #495057;
-    color: var(--focus-color);
-
-}
-
-.header .menu {
-    display: none;
-}
-
-
 .header .logo {
     font-size: 3em;
     line-height: 1em;
@@ -92,6 +66,33 @@ body {
     border-radius: 50%;
 }
 
+/* pseudo classes for the icons in the header */
+
+.header .menu,
+.header .bell {
+    display: grid;
+    place-items: center;
+    outline: none;
+    border-radius: 50%;
+    height: 2.3em;
+    width: 2.3em;
+    cursor: pointer;
+}
+
+.header .menu:hover,
+.header .menu:focus,
+.header .bell:hover,
+.header .bell:focus {
+    background-color: var(--border-color);
+    color: var(--header-text-color);
+}
+
+.header .menu {
+    display: none;
+}
+
+/* sidebar */
+
 .sidebar {
     display: grid;
     grid-area: 2 / 1 / 3 / 2;
@@ -101,7 +102,7 @@ body {
     font-weight: 400;
     background-color: var(--sidebar-bg-color);
     color: var(--sidebar-text-color);
-    box-shadow: -1px 0px 7px var(--sidebar-text-color);
+    border-right: thin solid var(--border-color);
     z-index: 1;
 }
 
@@ -117,11 +118,19 @@ body {
     cursor: pointer;
 }
 
+/* pseudo classes for the icons text in the sidebar */
+
 .sidebar .sidebar-select:active,
 .sidebar .sidebar-select:focus,
-.sidebar .sidebar-select:hover {
-    background-color: var(--focus-bg);
-    color: var(--focus-color);
+.sidebar .sidebar-select:hover,
+.content .card .action:focus,
+.content .card .action:hover,
+.content .navbar .action:focus,
+.content .navbar .action:hover,
+.content .navbar input:first-child:focus,
+.content .navbar input:first-child:hover {
+    background-color: var(--border-color);
+    color: var(--header-text-color);
 }
 
 .sidebar .sidebar-select:active,
@@ -142,42 +151,163 @@ body {
 .content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-    grid-template-rows: 5rem;
+    grid-template-rows: 4rem;
+    min-width: 100%;
     grid-auto-flow: dense;
-    gap: 1rem;
-    padding: 1rem;
-    background-color: var(--content-bg-color);
+    gap: calc(var(--content-padding) / 3 * 2);
+    padding: calc(var(--content-padding) / 3 * 2);
+    background-color: var(--header-bg-color);
+    color: var(--header-text-color);
     overflow: auto;
 }
 
 .content svg {
-    height: 1.6em;
+    height: 1.2em;
 }
 
-.content div {
-    padding: 2rem;
-    background-color: var(--content-card-bg-color);
-    border-radius: 2rem;
-    border: solid thin var(--sidebar-text-color);
+/* general font styling inside the content container */
+
+.content h2 {
+    margin-bottom: 1em;
 }
 
+.content h4 {
+    margin-bottom: 0.1em;
+}
+
+.content p {
+    color: var(--sidebar-text-color);
+}
+
+.content .announcement p {
+    font-size: 0.8em;
+}
+
+.content hr {
+    border-color: #adb5bd;
+    border-style: solid;
+    margin: 1em 0
+}
+
+/* navbar card */
 
 .content .navbar {
     grid-column: 1 / -2;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start
-
+    align-items: center;
+    gap: 0.1rem;
+    padding: 1rem;
+    background-color: var(--sidebar-bg-color);
+    border: thin solid var(--border-color);
+    border-radius: 1rem;
 }
+
+.content .navbar input:first-child {
+    flex: 1;
+    appearance: none;
+    height: 2.3rem;
+    border: 0;
+    padding: 0 1.15rem;
+    border-radius: 1.15rem;
+    font-size: 1rem !important;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    outline: none;
+    background-color: var(--header-bg-color);
+    color: var(--sidebar-text-color);
+}
+
+/* container for the important cards */
 
 .content .important {
+    display: grid;
+    gap: calc(var(--content-padding) / 3 * 2);
+    align-content: start;
     grid-column: -2 / -1;
     grid-row: span 3;
-    background-color: rebeccapurple;
+    background-color: transparent;
 }
+
+/* announcement card */
+
+.content .announcement {
+    padding: 1rem;
+    background-color: var(--sidebar-bg-color);
+    border: thin solid var(--border-color);
+    border-radius: 1rem;
+}
+
+/* trending card */
+
+.content .trending {
+    padding: 1.2rem;
+    background-color: var(--sidebar-bg-color);
+    border: thin solid var(--border-color);
+    border-radius: 1.2rem;
+}
+
+.content .trending div {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    background-color: transparent;
+    margin-top: 0.8em;
+}
+
+.content .trending div h4 {
+    align-self: end;
+}
+
+.content .trending div img {
+    grid-row: span 2;
+    border-radius: 50%;
+    height: 3rem;
+    margin-right: 1em;
+}
+
+/* project cards */
+
+.content .card {
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: thin solid var(--border-color);
+    border-left: 1rem solid var(--border-color);
+    background-color: var(--sidebar-bg-color);
+}
+
+.content .card .action-box {
+    display: grid;
+    grid-auto-flow: column;
+    place-content: end;
+    align-items: center;
+    gap: 1rem;
+}
+
+.content .navbar .action,
+.content .card .action {
+    display: grid;
+    place-items: center;
+    outline: none;
+    border-radius: 50%;
+    height: 2.3rem;
+    width: 2.3rem;
+    cursor: pointer;
+}
+
+/* media querys for the sidebar dropdown and font sizing*/
+
+@media only screen and (min-width: 2000px) {
+    .content {
+        align-content: start;
+    }
+
+}
+
 @media only screen and (max-width: 768px) {
     :root {
         font-size: 0.9rem;
+        --content-padding: 2rem;
     }
 
     .header .menu {
@@ -208,6 +338,7 @@ body {
 @media only screen and (max-width: 450px) {
     :root {
         font-size: 0.8rem;
+        --content-padding: 1.5rem
     }
 
     .header .logo {
@@ -222,5 +353,5 @@ body {
 
     .sidebar .sidebar-select {
         padding-right: 1rem;
-    }
+    }    
 }
