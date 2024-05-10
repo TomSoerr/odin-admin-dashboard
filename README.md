@@ -11,6 +11,7 @@ This project has:
 The site is responsive and works on mobile, tablet and desktop.
 
 ## Links
+- [Imprint](https://tomsoerr.github.io/#/impressum)
 - [Live Preview](https://tomsoerr.github.io/odin-admin-dashboard/)
 - Link to the [Assignment](https://www.theodinproject.com/lessons/node-path-intermediate-html-and-css-admin-dashboard)
 - See my next [Project](https://github.com/TomSoerr/odin-library)
